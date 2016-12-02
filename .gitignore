@@ -36,3 +36,6 @@
 
 # Apple Desktop Service Store
 *.DS_Store
+
+# g++ compiled file
+*main*
