@@ -64,6 +64,25 @@ void vectorRotate(int* arr, int len, int cnt) {
     arr[len - cnt + startPos] = val;
 }
 
+void vectorRotateAcrobat(int* arr, int len, int cnt) {
+    int endpos = gcd(len, cnt);
+    for (int i = 0; i < endpos; i++) {
+        int t = arr[i];
+        int k = i;
+	int j = k;
+	while (true) {
+	    j += cnt;
+	    if (j >= len)
+	        j -= len;
+	    if (j == i)
+	        break;
+	    arr[k] = arr[j];
+	    k = j;
+	}
+	arr[k] = t;
+    }
+}
+
 int main() {
     srand((int)time(NULL));
     int arr[ARRAY_LEN];
@@ -72,6 +91,7 @@ int main() {
 	arr[i] = num;
     }
     printArr(arr, ARRAY_LEN);
-    vectorRotate(arr, ARRAY_LEN, 8);
+    //vectorRotate(arr, ARRAY_LEN, 8);
+    vectorRotateAcrobat(arr, ARRAY_LEN, 8);
     printArr(arr, ARRAY_LEN);
 }

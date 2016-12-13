@@ -39,3 +39,6 @@
 
 # g++ compiled file
 *main*
+
+# test file
+*test*
