@@ -49,18 +49,26 @@ int subquadratic(int* arr, int l, int r) {
     }
     int m = (l + r) / 2;
     int lmax = 0;
+    int lr = m;
     int sum = 0;
     for (int i = m; i >= l; i--) {
         sum += arr[i];
-	lmax = max(lmax, sum);
+	if (sum > lmax) {
+	    lmax = sum;
+	    lr = i;
+	}
     }
     int rmax = 0;
+    int rl = m + 1;
     sum = 0;
     for (int i = m + 1; i <= r; i++) {
         sum += arr[i];
-	rmax = max(rmax, sum);
+	if (sum > rmax) {
+	    rmax = sum;
+	    rl = i;
+	}
     }
-    return max(lmax + rmax, max(subquadratic(arr, l, m), subquadratic(arr, m + 1, r)));
+    return max(lmax + rmax, max(subquadratic(arr, l, lr - 1), subquadratic(arr, rl + 1, r)));
 }
 
 int main() {
